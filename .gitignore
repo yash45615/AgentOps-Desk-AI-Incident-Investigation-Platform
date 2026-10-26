@@ -1,0 +1,42 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+.venv-linux/
+venv/
+
+# Test and lint artifacts
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+
+# Databases and local artifacts
+*.db
+*.sqlite
+*.sqlite3
+reports/
+
+# Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Editor and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

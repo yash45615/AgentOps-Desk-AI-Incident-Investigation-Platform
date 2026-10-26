@@ -1,0 +1,111 @@
+
+[
+    
+ {
+  "case_id": "timeout-001",
+  "description": "A request times out",
+  "evidence": [
+    {
+      "id": "ev-timeout-1",
+      "evidence_type": "log",
+      "title": "Request deadline exceeded",
+      "content": "The request timed out after 30 seconds.",
+      "source": "fixture"
+    }
+  ],
+  "expected_rule_ids": ["timeout"]
+  },
+
+    
+  
+  {
+    "case_id": "connection-001",
+    "description": "The upstream connection is refused",
+    "evidence": [
+      {
+        "id": "ev-connection-1",
+        "evidence_type": "log",
+        "title": "Upstream failure",
+        "content": "Connection refused by upstream service.",
+        "source": "fixture"
+      }
+    ],
+    "expected_rule_ids": ["connection_failure"]
+  },
+  {
+    "case_id": "server-error-001",
+    "description": "An HTTP 503 response occurs",
+    "evidence": [
+      {
+        "id": "ev-server-1",
+        "evidence_type": "event",
+        "title": "Service unavailable",
+        "content": "HTTP 503 service unavailable.",
+        "source": "fixture"
+      }
+    ],
+    "expected_rule_ids": ["server_error"]
+  },
+  {
+    "case_id": "latency-001",
+    "description": "A latency spike occurs",
+    "evidence": [
+      {
+        "id": "ev-latency-1",
+        "evidence_type": "metric",
+        "title": "Slow response",
+        "content": "Latency: 2400 ms",
+        "source": "fixture"
+      }
+    ],
+    "expected_rule_ids": ["high_latency"]
+  },
+  {
+    "case_id": "resource-001",
+    "description": "A service runs out of memory",
+    "evidence": [
+      {
+        "id": "ev-resource-1",
+        "evidence_type": "log",
+        "title": "Worker crash",
+        "content": "Worker stopped because of out of memory.",
+        "source": "fixture"
+      }
+    ],
+    "expected_rule_ids": ["resource_pressure"]
+  },
+  {
+    "case_id": "multiple-signals-001",
+    "description": "Evidence contains a timeout and a server error",
+    "evidence": [
+      {
+        "id": "ev-multi-1",
+        "evidence_type": "log",
+        "title": "Checkout failure",
+        "content": "Request timed out. The upstream returned HTTP 503.",
+        "source": "fixture"
+      }
+    ],
+    "expected_rule_ids": ["timeout", "server_error"]
+  },
+  {
+    "case_id": "normal-operation-001",
+    "description": "Normal operation should not trigger failure rules",
+    "evidence": [
+      {
+        "id": "ev-normal-1",
+        "evidence_type": "event",
+        "title": "Deployment completed",
+        "content": "Deployment completed successfully. All health checks passed.",
+        "source": "fixture"
+      }
+    ],
+    "expected_rule_ids": []
+  },
+  {
+    "case_id": "empty-evidence-001",
+    "description": "No evidence is available",
+    "evidence": [],
+    "expected_rule_ids": []
+  }
+]
